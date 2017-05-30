@@ -11,6 +11,7 @@ import TrueScale
 
 class StartViewController: UIViewController {
     
+    //let myNativeBoundSize: CGSize = UIScreen.main.nativeBounds.size
     
     //変更するvar
     var squares = [UIView]()
@@ -38,7 +39,7 @@ class StartViewController: UIViewController {
                 labels.append(label)
                 self.view.addSubview(label)
             }
-            square.backgroundColor = UIColor.black
+            square.backgroundColor = UIColor.darkGray
             squares.append(square)
             self.view.addSubview(square)
         }

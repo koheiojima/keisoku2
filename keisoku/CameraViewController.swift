@@ -43,38 +43,29 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         captureSesssion = AVCaptureSession()
         stillImageOutput = AVCapturePhotoOutput()
-        
-        captureSesssion.sessionPreset = AVCaptureSessionPreset1920x1080 // 解像度の設定
-        
+        captureSesssion.sessionPreset = AVCaptureSessionPreset1920x1080
+        // 解像度の設定
         let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-        
         do {
             let input = try AVCaptureDeviceInput(device: device)
-            
             // 入力
             if (captureSesssion.canAddInput(input)) {
                 captureSesssion.addInput(input)
-                
                 // 出力
                 if (captureSesssion.canAddOutput(stillImageOutput)) {
                     captureSesssion.addOutput(stillImageOutput)
                     captureSesssion.startRunning() // カメラ起動
-                    
                     previewLayer = AVCaptureVideoPreviewLayer(session: captureSesssion)
-                    previewLayer?.videoGravity = AVLayerVideoGravityResizeAspect // アスペクトフィット
+                    previewLayer?.videoGravity = AVLayerVideoGravityResizeAspect
+                    // アスペクトフィット
                     previewLayer?.connection.videoOrientation = AVCaptureVideoOrientation.portrait // カメラの向き
-                    
                     cameraView.layer.addSublayer(previewLayer!)
-                    
                     // ビューのサイズの調整
                     previewLayer?.position = CGPoint(x: self.cameraView.frame.width / 2, y: self.cameraView.frame.height / 2)
                     previewLayer?.bounds = cameraView.frame
-                }
-            }
-        }
+                }}}
         catch {
             print(error)
         }
